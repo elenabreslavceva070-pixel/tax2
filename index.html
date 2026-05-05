@@ -14,7 +14,7 @@
         body {
             background: linear-gradient(145deg, #eef2f7 0%, #e0e7ef 100%);
             font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, 'Roboto', sans-serif;
-            padding: 2rem 1.5rem;
+            padding: 1.5rem 1rem;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -22,244 +22,235 @@
         }
 
         .trainer-container {
-            max-width: 1100px;
+            max-width: 1000px;
             width: 100%;
             background: #FFFFFF;
-            border-radius: 2.5rem;
-            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25), 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2);
             overflow: hidden;
             transition: all 0.2s ease;
         }
 
         .trainer-header {
-            padding: 2rem 2rem 1rem 2rem;
+            padding: 1.2rem 1.8rem 0.8rem 1.8rem;
             background: #ffffff;
-            border-bottom: 2px solid rgba(149, 202, 250, 0.3);
+            border-bottom: 2px solid rgba(149, 202, 250, 0.4);
         }
 
         .trainer-header h1 {
-            font-size: 1.9rem;
+            font-size: 1.65rem;
             font-weight: 600;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.01em;
             background: linear-gradient(135deg, #1A2C3E, #2A4B6E);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.2rem;
         }
 
         .trainer-header p {
             color: #4a627a;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 450;
-            margin-top: 0.25rem;
         }
 
         .quiz-area {
-            padding: 1.5rem 2rem 2rem 2rem;
+            padding: 1.2rem 1.8rem 1.5rem 1.8rem;
         }
 
         .question-card {
-            margin-bottom: 2.2rem;
-            animation: fadeSlideUp 0.3s ease-out;
+            margin-bottom: 1.5rem;
+            animation: fadeSlideUp 0.25s ease-out;
         }
 
         .question-title {
             font-weight: 600;
-            font-size: 1.35rem;
+            font-size: 1.15rem;
             color: #1E2F3F;
-            margin-bottom: 1rem;
+            margin-bottom: 0.7rem;
             display: flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 0.5rem;
             flex-wrap: wrap;
         }
 
         .q-mark {
             background: #95CAFA30;
             color: #2c6280;
-            width: 32px;
-            height: 32px;
+            width: 26px;
+            height: 26px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            border-radius: 40px;
+            border-radius: 30px;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.85rem;
         }
 
+        /* компактные кнопки: грид с минимальной шириной, плотные отступы */
         .options-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.2rem;
-            margin-top: 0.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 0.7rem;
+            margin-top: 0.2rem;
         }
 
         .option-btn {
-            flex: 1 1 220px;
             background: #FFFFFF;
-            border: 2px solid #95CAFA;
-            border-radius: 1.5rem;
-            padding: 1rem 1rem;
+            border: 1.8px solid #95CAFA;
+            border-radius: 1.2rem;
+            padding: 0.65rem 0.9rem;
             font-family: inherit;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             font-weight: 500;
             color: #1f3b4c;
             cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            text-align: center;
+            transition: all 0.2s ease;
+            text-align: left;
+            line-height: 1.35;
             backdrop-filter: blur(2px);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
             letter-spacing: -0.01em;
         }
 
         .option-btn:hover {
             background: #F5FAFF;
             border-color: #6dace0;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 18px -8px rgba(149,202,250,0.4);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(149,202,250,0.2);
         }
 
         .option-btn.selected {
             background: #EFF7FF;
             border-color: #3C8DC5;
-            box-shadow: 0 4px 12px rgba(60, 141, 197, 0.2);
+            box-shadow: 0 2px 8px rgba(60, 141, 197, 0.15);
             color: #155a8a;
-            position: relative;
         }
 
         .option-btn.selected::after {
-            content: "✓";
+            content: " ✓";
             font-weight: bold;
-            margin-left: 8px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #2a7faa;
         }
 
         .result-btn-wrapper {
             display: flex;
             justify-content: center;
-            margin: 2rem 0 1rem 0;
+            margin: 1.2rem 0 0.8rem 0;
         }
 
         .btn-result {
             background: #1F4A6E;
             border: none;
-            padding: 0.9rem 2.5rem;
-            font-size: 1.05rem;
+            padding: 0.7rem 2rem;
+            font-size: 1rem;
             font-weight: 600;
             font-family: inherit;
             color: white;
-            border-radius: 3rem;
+            border-radius: 2.5rem;
             cursor: pointer;
             transition: 0.2s;
-            box-shadow: 0 5px 12px rgba(31,74,110,0.2);
-            letter-spacing: 0.3px;
+            box-shadow: 0 3px 10px rgba(31,74,110,0.2);
+            letter-spacing: 0.2px;
         }
 
         .btn-result:hover {
             background: #0f3a57;
-            transform: scale(0.98);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transform: scale(0.97);
         }
 
         .result-card {
             background: #F8FBFE;
-            border-radius: 1.8rem;
-            margin-top: 2rem;
-            padding: 1.5rem 2rem;
-            border: 1px solid #95CAFA60;
+            border-radius: 1.4rem;
+            margin-top: 1.2rem;
+            padding: 1rem 1.5rem;
+            border: 1px solid #95CAFA70;
             transition: all 0.3s;
-            animation: fadeAppear 0.4s ease;
+            animation: fadeAppear 0.3s ease;
         }
 
         .result-level {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: #1C4E6C;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
 
         .result-details {
             color: #2c3e4e;
-            line-height: 1.5;
-            margin-top: 0.8rem;
-            border-left: 4px solid #95CAFA;
-            padding-left: 1.2rem;
+            line-height: 1.45;
+            margin-top: 0.5rem;
+            border-left: 3px solid #95CAFA;
+            padding-left: 1rem;
         }
 
         .job-list {
-            margin: 0.75rem 0 0.5rem 1.2rem;
+            margin: 0.5rem 0 0.2rem 1rem;
             list-style-type: none;
         }
         .job-list li {
-            margin: 0.4rem 0;
+            margin: 0.3rem 0;
             position: relative;
-            padding-left: 1.2rem;
+            padding-left: 1.1rem;
+            font-size: 0.9rem;
         }
         .job-list li::before {
             content: "•";
             color: #3C8DC5;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1rem;
             position: absolute;
             left: 0;
-            top: -0.05rem;
+            top: -0.02rem;
         }
         .requirement-note {
             background: #EFF3F8;
             border-radius: 0.8rem;
-            padding: 0.6rem 1rem;
-            margin-top: 0.8rem;
-            font-size: 0.85rem;
+            padding: 0.5rem 0.9rem;
+            margin-top: 0.7rem;
+            font-size: 0.8rem;
             color: #2c5a7a;
         }
         hr {
-            margin: 0.7rem 0;
+            margin: 0.5rem 0;
             border: none;
             height: 1px;
-            background: #95CAFA40;
+            background: #95CAFA30;
         }
 
         @keyframes fadeSlideUp {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeAppear {
             from { opacity: 0; transform: translateY(8px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @keyframes fadeAppear {
+            from { opacity: 0; transform: translateY(5px);}
             to { opacity: 1; transform: translateY(0);}
         }
 
         footer {
             background: #FFFFFF;
             border-top: 1px solid #eef2f6;
-            padding: 1rem 2rem;
-            font-size: 0.75rem;
+            padding: 0.7rem 1.5rem;
+            font-size: 0.7rem;
             color: #7d8e9f;
             text-align: center;
         }
 
         @media (max-width: 700px) {
-            body { padding: 1rem; }
-            .trainer-header h1 { font-size: 1.5rem; }
-            .options-grid { gap: 0.8rem; }
-            .option-btn { flex: 1 1 100%; padding: 0.85rem; }
-            .quiz-area { padding: 1.2rem; }
+            body { padding: 0.8rem; }
+            .trainer-header h1 { font-size: 1.4rem; }
+            .options-grid { grid-template-columns: 1fr; gap: 0.6rem; }
+            .option-btn { padding: 0.6rem 0.8rem; font-size: 0.82rem; }
+            .quiz-area { padding: 0.8rem 1.2rem 1.2rem 1.2rem; }
+            .trainer-header { padding: 1rem 1.2rem 0.6rem 1.2rem; }
         }
 
         .reset-link {
             text-align: right;
-            margin-top: 0.8rem;
+            margin-top: 0.7rem;
         }
         .reset-link span {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #7895b2;
             cursor: pointer;
             text-decoration: underline;
@@ -267,6 +258,11 @@
         }
         .reset-link span:hover {
             color: #2c5a7a;
+        }
+
+        /* небольшая кастомизация для текста внутри кнопок */
+        .option-btn br {
+            display: none;
         }
     </style>
 </head>
@@ -288,7 +284,7 @@
 
 <script>
     // --------------------------------------------------------------
-    // Все тексты без буквы "ё"
+    // Компактные варианты ответов, без "ё"
     // --------------------------------------------------------------
     const QUESTIONS = [
         {
@@ -311,25 +307,25 @@
         },
         {
             id: 2,
-            text: "Какие задачи вы хотите выполнять? (Ориентир на должностной уровень)",
+            text: "Какие задачи вам ближе? (Ориентир на уровень)",
             options: [
-                { value: "consult", label: "Проверка первичных документов по налоговым операциям, расчет налоговой базы, проверка контрагентов, консультирование сотрудников" },
-                { value: "senior", label: "Внедрение налоговых схем, подготовка возражений для налоговых органов, консультирование руководства по сложным вопросам" },
-                { value: "director", label: "Руководство командой налоговых консультантов, стратегическое налоговое планирование, участие в ключевых бизнес-решениях" }
+                { value: "consult", label: "Оперативное консультирование, налоговый учет, проверка контрагентов" },
+                { value: "senior", label: "Сложные кейсы, возражения в налоговых органах, руководство отдельными задачами" },
+                { value: "director", label: "Стратегическое планирование, управление командой, налоговый директор" }
             ]
         }
     ];
 
-    // Функция определения уровня на основе ответов (по профстандарту)
+    // Определение уровня (по профстандарту)
     function determineLevel(answers) {
         const education = answers[0];
         const experience = answers[1];
         
         if (education === 'secondary') {
             if (experience === 'less2') {
-                return { level: 6, match: false, message: "Среднее профессиональное образование, но стаж менее 2 лет. Для 6 уровня требуется стаж не менее 5 лет (согласно таблице)." };
+                return { level: 6, match: false, message: "Среднее профессиональное, стаж менее 2 лет. Для 6 уровня нужно не менее 5 лет стажа." };
             } else if (experience === 'from2to3') {
-                return { level: 6, match: true, extra: "Среднее профессиональное + стаж 2-3 года. Вы можете претендовать на 6 уровень, но профстандарт рекомендует стаж от 5 лет." };
+                return { level: 6, match: true, extra: "Среднее профессиональное + стаж 2-3 года. Вы можете претендовать на 6 уровень (рекомендованный стаж от 5 лет)." };
             } else if (experience === 'from3to5') {
                 return { level: 6, match: true, extra: "Среднее профессиональное + стаж до 5 лет. Соответствие 6 уровню." };
             } else {
@@ -340,16 +336,15 @@
             if (experience === 'less2') {
                 return { level: 0, match: false, message: "Высшее профильное образование, но стаж менее 2 лет. Требуется стаж от 2 лет для 6 уровня." };
             } else if (experience === 'from2to3') {
-                return { level: 6, match: true, extra: "Высшее экономическое/юридическое + стаж 2-3 года. Уровень 6." };
+                return { level: 6, match: true, extra: "Высшее + стаж 2-3 года. Уровень 6." };
             } else if (experience === 'from3to5') {
-                return { level: 7, match: true, extra: "Высшее образование + стаж от 3 до 5 лет. Уровень 7." };
+                return { level: 7, match: true, extra: "Высшее + стаж от 3 до 5 лет. Уровень 7." };
             } else {
-                return { level: 8, match: true, extra: "Высшее образование + стаж 5 лет и более. Уровень 8." };
+                return { level: 8, match: true, extra: "Высшее + стаж 5 лет и более. Уровень 8." };
             }
         }
     }
 
-    // Возвращает список должностей в зависимости от уровня (без лишних рекомендаций)
     function getJobListByLevel(level) {
         if (level === 6) {
             return [
@@ -408,7 +403,7 @@
             html += `</div></div>`;
         });
         html += `<div class="result-btn-wrapper"><button class="btn-result" id="getResultBtn">Определить уровень</button></div>`;
-        html += `<div id="resultContainer" style="margin-top: 1rem;"></div>`;
+        html += `<div id="resultContainer" style="margin-top: 0.8rem;"></div>`;
         html += `<div class="reset-link"><span id="resetQuizBtn">Сбросить ответы и пройти заново</span></div>`;
         quizArea.innerHTML = html;
 
@@ -468,11 +463,10 @@
         
         if (finalLevel === 0 || !isMatch) {
             resultTitle = "Рекомендация по развитию";
-            requirementText = "Рекомендуем получить профильное высшее образование или увеличить стаж работы по налоговой тематике до необходимого минимума.";
+            requirementText = "Рекомендуем получить профильное высшее образование или увеличить стаж работы до необходимого минимума (от 2 лет при высшем образовании).";
         } else {
             resultTitle = `Ваш уровень: ${finalLevel}-й уровень профстандарта`;
             jobsList = getJobListByLevel(finalLevel);
-            // Краткое описание требований (без воды)
             if (finalLevel === 6) {
                 const eduText = userAnswers[0] === 'secondary' ? "среднее профессиональное" : "высшее";
                 requirementText = `Требования: ${eduText} (экономическое/юридическое), стаж от 2 лет (при высшем) или от 5 лет (при среднем). Курсы повышения квалификации 1 раз в 3 года.`;
@@ -483,10 +477,9 @@
             }
         }
         
-        // Формируем список должностей в HTML
         let jobsHtml = "";
         if (jobsList.length > 0) {
-            jobsHtml = `<div style="margin-top: 0.5rem;"><strong>Какие должности вы можете занимать:</strong><ul class="job-list">`;
+            jobsHtml = `<div style="margin-top: 0.4rem;"><strong>Какие должности вы можете занимать:</strong><ul class="job-list">`;
             jobsList.forEach(job => {
                 jobsHtml += `<li>${job}</li>`;
             });
@@ -497,7 +490,7 @@
             <div class="result-card">
                 <div class="result-level">${resultTitle}</div>
                 <div class="result-details">
-                    ${matchMessage ? `<em>${matchMessage}</em><br>` : ""}
+                    ${matchMessage ? `<em style="font-size:0.85rem;">${matchMessage}</em><br>` : ""}
                     ${jobsHtml}
                     ${requirementText ? `<div class="requirement-note">${requirementText}</div>` : ""}
                     ${(!isMatch && finalLevel === 0) ? `<div class="requirement-note">${requirementText}</div>` : ""}

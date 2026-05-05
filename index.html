@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Налоговый консультант | Интерактивный тренажер уровней</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #eef2f7 0%, #e0e7ef 100%);
+            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, 'Roboto', sans-serif;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .trainer-container {
+            max-width: 1100px;
+            width: 100%;
+            background: #FFFFFF;
+            border-radius: 2.5rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25), 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .trainer-header {
+            padding: 2rem 2rem 1rem 2rem;
+            background: #ffffff;
+            border-bottom: 2px solid rgba(149, 202, 250, 0.3);
+        }
+
+        .trainer-header h1 {
+            font-size: 1.9rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #1A2C3E, #2A4B6E);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .trainer-header p {
+            color: #4a627a;
+            font-size: 1rem;
+            font-weight: 450;
+            margin-top: 0.25rem;
+        }
+
+        .quiz-area {
+            padding: 1.5rem 2rem 2rem 2rem;
+        }
+
+        .question-card {
+            margin-bottom: 2.2rem;
+            animation: fadeSlideUp 0.3s ease-out;
+        }
+
+        .question-title {
+            font-weight: 600;
+            font-size: 1.35rem;
+            color: #1E2F3F;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .q-mark {
+            background: #95CAFA30;
+            color: #2c6280;
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .options-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .option-btn {
+            flex: 1 1 220px;
+            background: #FFFFFF;
+            border: 2px solid #95CAFA;
+            border-radius: 1.5rem;
+            padding: 1rem 1rem;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #1f3b4c;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            text-align: center;
+            backdrop-filter: blur(2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            letter-spacing: -0.01em;
+        }
+
+        .option-btn:hover {
+            background: #F5FAFF;
+            border-color: #6dace0;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px -8px rgba(149,202,250,0.4);
+        }
+
+        .option-btn.selected {
+            background: #EFF7FF;
+            border-color: #3C8DC5;
+            box-shadow: 0 4px 12px rgba(60, 141, 197, 0.2);
+            color: #155a8a;
+            position: relative;
+        }
+
+        .option-btn.selected::after {
+            content: "✓";
+            font-weight: bold;
+            margin-left: 8px;
+            font-size: 1rem;
+            color: #2a7faa;
+        }
+
+        .result-btn-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .btn-result {
+            background: #1F4A6E;
+            border: none;
+            padding: 0.9rem 2.5rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            font-family: inherit;
+            color: white;
+            border-radius: 3rem;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 5px 12px rgba(31,74,110,0.2);
+            letter-spacing: 0.3px;
+        }
+
+        .btn-result:hover {
+            background: #0f3a57;
+            transform: scale(0.98);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .result-card {
+            background: #F8FBFE;
+            border-radius: 1.8rem;
+            margin-top: 2rem;
+            padding: 1.5rem 2rem;
+            border: 1px solid #95CAFA60;
+            transition: all 0.3s;
+            animation: fadeAppear 0.4s ease;
+        }
+
+        .result-level {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1C4E6C;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-details {
+            color: #2c3e4e;
+            line-height: 1.5;
+            margin-top: 0.8rem;
+            border-left: 4px solid #95CAFA;
+            padding-left: 1.2rem;
+        }
+
+        .job-list {
+            margin: 0.75rem 0 0.5rem 1.2rem;
+            list-style-type: none;
+        }
+        .job-list li {
+            margin: 0.4rem 0;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+        .job-list li::before {
+            content: "•";
+            color: #3C8DC5;
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+            top: -0.05rem;
+        }
+        .requirement-note {
+            background: #EFF3F8;
+            border-radius: 0.8rem;
+            padding: 0.6rem 1rem;
+            margin-top: 0.8rem;
+            font-size: 0.85rem;
+            color: #2c5a7a;
+        }
+        hr {
+            margin: 0.7rem 0;
+            border: none;
+            height: 1px;
+            background: #95CAFA40;
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeAppear {
+            from { opacity: 0; transform: translateY(8px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        footer {
+            background: #FFFFFF;
+            border-top: 1px solid #eef2f6;
+            padding: 1rem 2rem;
+            font-size: 0.75rem;
+            color: #7d8e9f;
+            text-align: center;
+        }
+
+        @media (max-width: 700px) {
+            body { padding: 1rem; }
+            .trainer-header h1 { font-size: 1.5rem; }
+            .options-grid { gap: 0.8rem; }
+            .option-btn { flex: 1 1 100%; padding: 0.85rem; }
+            .quiz-area { padding: 1.2rem; }
+        }
+
+        .reset-link {
+            text-align: right;
+            margin-top: 0.8rem;
+        }
+        .reset-link span {
+            font-size: 0.8rem;
+            color: #7895b2;
+            cursor: pointer;
+            text-decoration: underline;
+            transition: 0.1s;
+        }
+        .reset-link span:hover {
+            color: #2c5a7a;
+        }
+    </style>
+</head>
+<body>
+<div class="trainer-container">
+    <div class="trainer-header">
+        <h1>Налоговый навигатор</h1>
+        <p>Определите свой профессиональный уровень согласно профстандарту</p>
+    </div>
+
+    <div class="quiz-area" id="quizArea">
+        <!-- вопросы генерируются динамически через JS -->
+    </div>
+
+    <footer>
+        Профессиональный стандарт: образование, стаж, повышение квалификации
+    </footer>
+</div>
+
+<script>
+    // --------------------------------------------------------------
+    // Все тексты без буквы "ё"
+    // --------------------------------------------------------------
+    const QUESTIONS = [
+        {
+            id: 0,
+            text: "Ваше базовое профильное образование?",
+            options: [
+                { value: "secondary", label: "Среднее профессиональное (экономическое / юридическое)" },
+                { value: "higher", label: "Высшее образование (экономическое / юридическое)" }
+            ]
+        },
+        {
+            id: 1,
+            text: "Стаж работы в сфере налогов, учета или консультирования?",
+            options: [
+                { value: "less2", label: "Менее 2 лет" },
+                { value: "from2to3", label: "От 2 до 3 лет" },
+                { value: "from3to5", label: "От 3 до 5 лет" },
+                { value: "more5", label: "5 лет и более" }
+            ]
+        },
+        {
+            id: 2,
+            text: "Какие задачи вы хотите выполнять? (Ориентир на должностной уровень)",
+            options: [
+                { value: "consult", label: "Проверка первичных документов по налоговым операциям, расчет налоговой базы, проверка контрагентов, консультирование сотрудников" },
+                { value: "senior", label: "Внедрение налоговых схем, подготовка возражений для налоговых органов, консультирование руководства по сложным вопросам" },
+                { value: "director", label: "Руководство командой налоговых консультантов, стратегическое налоговое планирование, участие в ключевых бизнес-решениях" }
+            ]
+        }
+    ];
+
+    // Функция определения уровня на основе ответов (по профстандарту)
+    function determineLevel(answers) {
+        const education = answers[0];
+        const experience = answers[1];
+        
+        if (education === 'secondary') {
+            if (experience === 'less2') {
+                return { level: 6, match: false, message: "Среднее профессиональное образование, но стаж менее 2 лет. Для 6 уровня требуется стаж не менее 5 лет (согласно таблице)." };
+            } else if (experience === 'from2to3') {
+                return { level: 6, match: true, extra: "Среднее профессиональное + стаж 2-3 года. Вы можете претендовать на 6 уровень, но профстандарт рекомендует стаж от 5 лет." };
+            } else if (experience === 'from3to5') {
+                return { level: 6, match: true, extra: "Среднее профессиональное + стаж до 5 лет. Соответствие 6 уровню." };
+            } else {
+                return { level: 6, match: true, extra: "Среднее профессиональное + стаж более 5 лет. Полное соответствие 6 уровню." };
+            }
+        } 
+        else {
+            if (experience === 'less2') {
+                return { level: 0, match: false, message: "Высшее профильное образование, но стаж менее 2 лет. Требуется стаж от 2 лет для 6 уровня." };
+            } else if (experience === 'from2to3') {
+                return { level: 6, match: true, extra: "Высшее экономическое/юридическое + стаж 2-3 года. Уровень 6." };
+            } else if (experience === 'from3to5') {
+                return { level: 7, match: true, extra: "Высшее образование + стаж от 3 до 5 лет. Уровень 7." };
+            } else {
+                return { level: 8, match: true, extra: "Высшее образование + стаж 5 лет и более. Уровень 8." };
+            }
+        }
+    }
+
+    // Возвращает список должностей в зависимости от уровня (без лишних рекомендаций)
+    function getJobListByLevel(level) {
+        if (level === 6) {
+            return [
+                "Консультант по налогам и сборам",
+                "Специалист по налоговому учету",
+                "Юрист по налоговым вопросам",
+                "Налоговый юрист",
+                "Экономист по налогам"
+            ];
+        } else if (level === 7) {
+            return [
+                "Главный консультант по налогам и сборам",
+                "Старший консультант по налогам и сборам",
+                "Ведущий специалист по налогам и сборам",
+                "Главный специалист по налогам и сборам"
+            ];
+        } else if (level === 8) {
+            return [
+                "Финансовый директор",
+                "Руководитель налоговой практики",
+                "Управляющий партнер",
+                "Другие руководящие должности"
+            ];
+        }
+        return [];
+    }
+
+    let userAnswers = {
+        0: null,
+        1: null,
+        2: null
+    };
+
+    function renderQuestions() {
+        const quizArea = document.getElementById('quizArea');
+        if (!quizArea) return;
+        let html = '';
+        QUESTIONS.forEach((q, idx) => {
+            const selectedValue = userAnswers[idx];
+            html += `
+                <div class="question-card" data-qid="${idx}">
+                    <div class="question-title">
+                        <span class="q-mark">${idx+1}</span> ${q.text}
+                    </div>
+                    <div class="options-grid" id="q-${idx}-options">
+            `;
+            q.options.forEach(opt => {
+                const isSelected = (selectedValue === opt.value);
+                const selectedClass = isSelected ? 'selected' : '';
+                html += `
+                    <button class="option-btn ${selectedClass}" data-qidx="${idx}" data-value="${opt.value}">
+                        ${opt.label}
+                    </button>
+                `;
+            });
+            html += `</div></div>`;
+        });
+        html += `<div class="result-btn-wrapper"><button class="btn-result" id="getResultBtn">Определить уровень</button></div>`;
+        html += `<div id="resultContainer" style="margin-top: 1rem;"></div>`;
+        html += `<div class="reset-link"><span id="resetQuizBtn">Сбросить ответы и пройти заново</span></div>`;
+        quizArea.innerHTML = html;
+
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const qidx = parseInt(btn.dataset.qidx);
+                const value = btn.dataset.value;
+                userAnswers[qidx] = value;
+                const container = document.getElementById(`q-${qidx}-options`);
+                if (container) {
+                    const btns = container.querySelectorAll('.option-btn');
+                    btns.forEach(b => {
+                        b.classList.remove('selected');
+                        if (b.dataset.value === value) {
+                            b.classList.add('selected');
+                        }
+                    });
+                }
+                const resultDiv = document.getElementById('resultContainer');
+                if (resultDiv) resultDiv.innerHTML = '';
+            });
+        });
+
+        const resultBtn = document.getElementById('getResultBtn');
+        if (resultBtn) {
+            resultBtn.addEventListener('click', () => {
+                computeAndShowResult();
+            });
+        }
+        const resetBtn = document.getElementById('resetQuizBtn');
+        if (resetBtn) {
+            resetBtn.addEventListener('click', () => {
+                userAnswers = {0: null, 1: null, 2: null};
+                renderQuestions();
+            });
+        }
+    }
+
+    function computeAndShowResult() {
+        const missing = [];
+        if (userAnswers[0] === null) missing.push(1);
+        if (userAnswers[1] === null) missing.push(2);
+        if (userAnswers[2] === null) missing.push(3);
+        if (missing.length > 0) {
+            alert(`Пожалуйста, ответьте на все вопросы (${missing.join(', ')}) для точного определения уровня.`);
+            return;
+        }
+
+        const levelObj = determineLevel(userAnswers);
+        let finalLevel = levelObj.level;
+        let matchMessage = levelObj.message || levelObj.extra || "";
+        let isMatch = levelObj.match !== undefined ? levelObj.match : (finalLevel !== 0);
+        
+        let resultTitle = "";
+        let jobsList = [];
+        let requirementText = "";
+        
+        if (finalLevel === 0 || !isMatch) {
+            resultTitle = "Рекомендация по развитию";
+            requirementText = "Рекомендуем получить профильное высшее образование или увеличить стаж работы по налоговой тематике до необходимого минимума.";
+        } else {
+            resultTitle = `Ваш уровень: ${finalLevel}-й уровень профстандарта`;
+            jobsList = getJobListByLevel(finalLevel);
+            // Краткое описание требований (без воды)
+            if (finalLevel === 6) {
+                const eduText = userAnswers[0] === 'secondary' ? "среднее профессиональное" : "высшее";
+                requirementText = `Требования: ${eduText} (экономическое/юридическое), стаж от 2 лет (при высшем) или от 5 лет (при среднем). Курсы повышения квалификации 1 раз в 3 года.`;
+            } else if (finalLevel === 7) {
+                requirementText = "Требования: высшее экономическое/юридическое, стаж от 3 лет. Курсы повышения квалификации 1 раз в 3 года.";
+            } else if (finalLevel === 8) {
+                requirementText = "Требования: высшее экономическое/юридическое, стаж от 5 лет. Курсы повышения квалификации 1 раз в 3 года.";
+            }
+        }
+        
+        // Формируем список должностей в HTML
+        let jobsHtml = "";
+        if (jobsList.length > 0) {
+            jobsHtml = `<div style="margin-top: 0.5rem;"><strong>Какие должности вы можете занимать:</strong><ul class="job-list">`;
+            jobsList.forEach(job => {
+                jobsHtml += `<li>${job}</li>`;
+            });
+            jobsHtml += `</ul></div>`;
+        }
+        
+        const resultHTML = `
+            <div class="result-card">
+                <div class="result-level">${resultTitle}</div>
+                <div class="result-details">
+                    ${matchMessage ? `<em>${matchMessage}</em><br>` : ""}
+                    ${jobsHtml}
+                    ${requirementText ? `<div class="requirement-note">${requirementText}</div>` : ""}
+                    ${(!isMatch && finalLevel === 0) ? `<div class="requirement-note">${requirementText}</div>` : ""}
+                </div>
+            </div>
+        `;
+        const container = document.getElementById('resultContainer');
+        if (container) {
+            container.innerHTML = resultHTML;
+            container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    }
+    
+    renderQuestions();
+</script>
+</body>
+</html>

@@ -350,6 +350,7 @@
             return [
                 "Консультант по налогам и сборам",
                 "Специалист по налоговому учету",
+                "Юрист по налоговым вопросам",
                 "Налоговый юрист",
                 "Экономист по налогам"
             ];
@@ -492,7 +493,6 @@
                     ${matchMessage ? `<em style="font-size:0.85rem;">${matchMessage}</em><br>` : ""}
                     ${jobsHtml}
                     ${requirementText ? `<div class="requirement-note">${requirementText}</div>` : ""}
-                    ${(!isMatch && finalLevel === 0) ? `<div class="requirement-note">${requirementText}</div>` : ""}
                 </div>
             </div>
         `;
